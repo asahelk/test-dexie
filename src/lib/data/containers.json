@@ -1,0 +1,400 @@
+[
+    {
+        "id": 1,
+        "text": 1,
+        "filters": [
+            {
+                "id": 1,
+                "name": "A",
+                "query": "4",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "id": 2,
+                "name": "B",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "id": 3,
+                "name": "C",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "id": 4,
+                "name": "D",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "text": 2,
+        "filters": [
+            {
+                "id": 1,
+                "name": "A",
+                "query": "1",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": true
+            },
+            {
+                "name": "B",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "C",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "D",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "text": 3,
+        "filters": [
+            {
+                "name": "A",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "B",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "C",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "D",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "text": 4,
+        "filters": [
+            {
+                "name": "A",
+                "query": 7,
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "B",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "C",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "D",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "text": 5,
+        "filters": [
+            {
+                "name": "A",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "B",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "C",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            },
+            {
+                "name": "D",
+                "items": [
+                    {
+                        "name": "$"
+                    },
+                    {
+                        "name": "%"
+                    },
+                    {
+                        "name": "&"
+                    },
+                    {
+                        "name": "#"
+                    }
+                ],
+                "isEnabled": false
+            }
+        ]
+    }
+]
