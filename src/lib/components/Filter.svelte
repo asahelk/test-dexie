@@ -5,6 +5,24 @@
 	import { createQuery } from '@tanstack/svelte-query';
 	import { liveQuery } from 'dexie';
 	import { onMount } from 'svelte';
+	// import Worker from '$lib/worker/worker.js?worker';
+
+	let syncWorker: Worker | undefined = undefined;
+
+	const onWorkerMessage = () => {
+		console.log('Cool it works out 😃');
+	};
+
+	const loadWorker = async () => {
+		const SyncWorker = await import('$lib/worker/worker.js?worker');
+		syncWorker = new SyncWorker.default();
+
+		syncWorker.onmessage = onWorkerMessage;
+
+    	syncWorker.postMessage({});
+	};
+
+	onMount(loadWorker);
 
 	export let filter: Filter;
 
@@ -16,18 +34,18 @@
 		return $pokemonFeedItems[str as keyof typeof $pokemonFeedItems];
 	};
 
-	let queryResult = createQuery<Item, Error>({
-		queryKey: ['item', filter.id],
-		queryFn: async () => await db.feedItem.where('query').equals(query).toArray()
-		// queryFn: async () =>
-		// 	liveQuery(async () => {
-		// 		// await new Promise((resolve) => setTimeout(resolve, 2000));
+	// let queryResult = createQuery<Item, Error>({
+	// 	queryKey: ['item', filter.id],
+	// 	queryFn: async () => await db.feedItem.where('query').equals(query).toArray()
+	// 	// queryFn: async () =>
+	// 	// 	liveQuery(async () => {
+	// 	// 		// await new Promise((resolve) => setTimeout(resolve, 2000));
 
-		// 		return db.feedItem.where('query').equals(query).toArray();
-		// 	})
-		// queryFn: async () =>
-		// 	await fetch('https://api.github.com/repos/SvelteStack/svelte-query').then((r) => r.json())
-	});
+	// 	// 		return db.feedItem.where('query').equals(query).toArray();
+	// 	// 	})
+	// 	// queryFn: async () =>
+	// 	// 	await fetch('https://api.github.com/repos/SvelteStack/svelte-query').then((r) => r.json())
+	// });
 
 	let localItems = liveQuery(async () => {
 		// await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -45,7 +63,7 @@
 	function onClickItem({ item }: { item: Item }) {
 		db.feedItem.put({ ...item, isCopied: !item.isCopied });
 
-		$queryResult.refetch();
+		// $queryResult.refetch();
 	}
 </script>
 
@@ -57,7 +75,7 @@
 		<span>{($localItems ?? []).length}</span>
 	</div>
 	<div class="flex flex-col gap-4">
-		<!-- {#await $localItems}
+		{#await $localItems}
 			Loading....xc
 		{:then items}
 			{#each items as item}
@@ -73,9 +91,9 @@
 					<div>{item.isCopied}</div>
 				</button>
 			{/each}
-		{/await} -->
+		{/await}
 
-		{#if $queryResult.isLoading}
+		<!-- {#if $queryResult.isLoading}
 			Loading...
 		{/if}
 		{#if $queryResult.error}
@@ -96,7 +114,7 @@
 					<div>{item.isCopied}</div>
 				</button>
 			{/each}
-		{/if}
+		{/if} -->
 
 		<!-- {#each items as item}
 			<div class="flex flex-col bg-violet-950 hover:bg-violet-900">

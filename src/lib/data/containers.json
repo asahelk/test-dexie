@@ -254,7 +254,7 @@
 			{
 				"id": 13,
 				"name": "A",
-				"query": 7,
+				"query": "7",
 				"items": [
 					{
 						"name": "$"
