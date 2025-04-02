@@ -15,7 +15,7 @@ export type Filter = {
 };
 
 export type Item = {
-	id: string;
+	id?: string | null;
 	name: string;
 	hasShiny: boolean;
 	isBoosted: boolean;
@@ -31,8 +31,9 @@ export type Item = {
 	flag: string;
 	locationName: string;
 	coords: string;
-	moves: string;
-	weather: string;
+	moves: string | null;
+	weather: string | null;
 	localTimeZone?: string;
 	isCopied?: boolean;
+	query: string;
 };

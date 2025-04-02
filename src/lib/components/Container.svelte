@@ -6,12 +6,17 @@
 	export let container: Container;
 </script>
 
-<div class="flex w-48 flex-col bg-neutral-600 items-center ">
-	<span class="bg-pink-950 w-full text-center mb-8">{container.text}</span>
+<div class="flex w-48 flex-col items-center bg-neutral-600">
+	<span class="mb-8 w-full bg-pink-950 text-center">{container.text}</span>
 
-	<div class="flex flex-col gap-4 w-full overflow-y-scroll">
+	<div class="flex w-full flex-col gap-4 overflow-y-scroll">
 		{#each container.filters as filter}
 			<Filter {filter} />
 		{/each}
+		<!-- {#if $localItems}
+			{#each $localItems as filter}
+				<Filter {filter} />
+			{/each}
+		{/if} -->
 	</div>
 </div>
