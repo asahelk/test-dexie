@@ -1,9 +1,15 @@
-self.onmessage = (event) => {
-    const task = event.data;
-    const outcome = performEpicCalculation(task);
-    self.postMessage(outcome);
-};
+import db from '$lib/db/db';
+import { liveQuery } from 'dexie';
 
-function performEpicCalculation(data) {
-    return data * 1000; // Let the magic happen
-}
+self.onmessage = async (event) => {
+	const { query } = event.data;
+
+	if (!query) return;
+
+	const feddItemsObservable = liveQuery(() => db.feedItem.where('query').equals(query).toArray());
+
+	feddItemsObservable.subscribe({
+		next: (result) => self.postMessage(result),
+		error: (error) => console.error(error)
+	});
+};

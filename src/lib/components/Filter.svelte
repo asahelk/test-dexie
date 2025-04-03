@@ -2,15 +2,19 @@
 	import db from '$lib/db/db';
 	import { pokemonFeedItems } from '$lib/store/persistStore';
 	import type { Filter, Item } from '$lib/types/types';
-	import { createQuery } from '@tanstack/svelte-query';
-	import { liveQuery } from 'dexie';
 	import { onMount } from 'svelte';
-	// import Worker from '$lib/worker/worker.js?worker';
+	import VirtualList from 'svelte-tiny-virtual-list';
+
+	export let filter: Filter;
+
+	let { query, name } = filter;
+	let items: Item[] = [];
 
 	let syncWorker: Worker | undefined = undefined;
 
-	const onWorkerMessage = () => {
-		console.log('Cool it works out 😃');
+	const onWorkerMessage = (event: MessageEvent) => {
+		const { data } = event;
+		items = data;
 	};
 
 	const loadWorker = async () => {
@@ -19,14 +23,13 @@
 
 		syncWorker.onmessage = onWorkerMessage;
 
-    	syncWorker.postMessage({});
+		syncWorker.postMessage({ query });
+
+		// const worker = new Worker('$lib/worker/worker.js?worker');
+		// worker.postMessage({ query });
 	};
 
 	onMount(loadWorker);
-
-	export let filter: Filter;
-
-	let { query, name } = filter;
 
 	const key = query as keyof typeof filter;
 
@@ -47,11 +50,11 @@
 	// 	// 	await fetch('https://api.github.com/repos/SvelteStack/svelte-query').then((r) => r.json())
 	// });
 
-	let localItems = liveQuery(async () => {
-		// await new Promise((resolve) => setTimeout(resolve, 2000));
+	// let localItems = liveQuery(async () => {
+	// 	// await new Promise((resolve) => setTimeout(resolve, 2000));
 
-		return db.feedItem.where('query').equals(query).toArray();
-	});
+	// 	return db.feedItem.where('query').equals(query).toArray();
+	// });
 
 	// let items: Item[] = access(query) ?? [];
 
@@ -62,7 +65,6 @@
 	// })
 	function onClickItem({ item }: { item: Item }) {
 		db.feedItem.put({ ...item, isCopied: !item.isCopied });
-
 		// $queryResult.refetch();
 	}
 </script>
@@ -71,11 +73,11 @@
 <div class="flex flex-col gap-2 bg-neutral-800">
 	<div class="bg-amber-950 hover:bg-amber-900">
 		<span>{name}</span>
-		<!-- <span>{items.length}</span> -->
-		<span>{($localItems ?? []).length}</span>
+		<span>{items.length}</span>
+		<!-- <span>{($localItems ?? []).length}</span> -->
 	</div>
 	<div class="flex flex-col gap-4">
-		{#await $localItems}
+		<!-- {#await $localItems}
 			Loading....xc
 		{:then items}
 			{#each items as item}
@@ -91,7 +93,7 @@
 					<div>{item.isCopied}</div>
 				</button>
 			{/each}
-		{/await}
+		{/await} -->
 
 		<!-- {#if $queryResult.isLoading}
 			Loading...
@@ -116,14 +118,74 @@
 			{/each}
 		{/if} -->
 
-		<!-- {#each items as item}
-			<div class="flex flex-col bg-violet-950 hover:bg-violet-900">
+		<!-- {#each items as item, index (item.id)}
+			<button
+				class="flex cursor-pointer flex-col bg-violet-950 hover:bg-violet-900"
+				class:is-copied={item.isCopied}
+				onclick={() => onClickItem({ item })}
+			>
 				<div>{item.name}</div>
 				<div>{item.ivs}</div>
 				<div>{item.localTimeZone}</div>
 				<div>{item.locationName}</div>
-			</div>
+				<div>{item.name}</div>
+				<div>{item.ivs}</div>
+				<div>{item.localTimeZone}</div>
+				<div>{item.locationName}</div>
+				<div>{item.name}</div>
+				<div>{item.ivs}</div>
+				<div>{item.localTimeZone}</div>
+				<div>{item.locationName}</div>
+				<div>{item.name}</div>
+				<div>{item.ivs}</div>
+				<div>{item.localTimeZone}</div>
+				<div>{item.locationName}</div>
+				<div>{item.name}</div>
+				<div>{item.ivs}</div>
+				<div>{item.localTimeZone}</div>
+				<div>{item.locationName}</div>
+				<div>{item.name}</div>
+				<div>{item.ivs}</div>
+				<div>{item.localTimeZone}</div>
+				<div>{item.locationName}</div>
+			</button>
 		{/each} -->
+
+		<VirtualList width="100%" height={600} itemCount={items.length} itemSize={50}>
+			<div slot="item" let:index let:style {style}>
+				{@const item = items[index]}
+				<button
+					class="flex cursor-pointer flex-col bg-violet-950 hover:bg-violet-900"
+					class:is-copied={item.isCopied}
+					onclick={() => onClickItem({ item })}
+				>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+					<div>{item.name}</div>
+					<div>{item.ivs}</div>
+					<div>{item.localTimeZone}</div>
+					<div>{item.locationName}</div>
+				</button>
+			</div>
+		</VirtualList>
 	</div>
 </div>
 
