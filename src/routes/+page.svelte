@@ -73,6 +73,6 @@
 	{/await} -->
 
 	{#each containers as container}
-		<Container {container} />
+		<Container bind:container />
 	{/each}
 </div>

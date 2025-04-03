@@ -5,8 +5,9 @@
 	import { createQuery } from '@tanstack/svelte-query';
 	import { liveQuery, type Observable } from 'dexie';
 	import { onMount } from 'svelte';
-	import VirtualList from 'svelte-tiny-virtual-list';
+
 	import { writable, type Writable } from 'svelte/store';
+	import VirtualList from './VirtualList/VirtualList.svelte';
 
 	export let filter: Filter;
 
@@ -63,17 +64,17 @@
 		// 	await fetch('https://api.github.com/repos/SvelteStack/svelte-query').then((r) => r.json())
 	});
 
-	let data: Writable<Item[]> | Observable<Item[]> = writable([]);
+	// let data: Writable<Item[]> | Observable<Item[]> = writable([]);
 
-	$: if ($queryResult.isSuccess) {
-		data = $queryResult.data;
-	}
+	// $: if ($queryResult.isSuccess) {
+	// 	data = $queryResult.data;
+	// }
 
-	// let localItems = liveQuery(async () => {
-	// 	// await new Promise((resolve) => setTimeout(resolve, 2000));
+	let localItems = liveQuery(async () => {
+		// await new Promise((resolve) => setTimeout(resolve, 2000));
 
-	// 	return db.feedItem.where('query').equals(query).toArray();
-	// });
+		return db.feedItem.where('query').equals(query).toArray();
+	});
 
 	// let items: Item[] = access(query) ?? [];
 
@@ -95,7 +96,7 @@
 		<!-- <span>{items.length}</span> -->
 		<!-- <span>{($localItems ?? []).length}</span> -->
 	</div>
-	<div class="flex flex-col gap-4">
+	<div class="flex max-h-svh flex-col gap-4">
 		<!-- {#await $localItems}
 			Loading....xc
 		{:then items}
@@ -206,8 +207,8 @@
 			</div>
 		</VirtualList> -->
 
-		<!-- {#if $localItems}
-			<VirtualList width="100%" height={600} itemCount={$localItems.length} itemSize={120}>
+		{#if $localItems}
+			<VirtualList width="100%" itemCount={$localItems.length} itemSize={120}>
 				<div slot="item" let:index let:style {style}>
 					{@const item = $localItems[index]}
 					<button
@@ -220,12 +221,100 @@
 						<div>{item.localTimeZone}</div>
 						<div>{item.locationName}</div>
 						<div>{item.isCopied}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
+						<div>{item.name}</div>
+						<div>{item.ivs}</div>
+						<div>{item.localTimeZone}</div>
+						<div>{item.locationName}</div>
+						<div>{item.isCopied}</div>
 					</button>
 				</div>
 			</VirtualList>
-		{/if} -->
+		{/if}
 
-		{#if $queryResult.isLoading}
+		<!-- {#if $queryResult.isLoading}
 			Loading...
 		{/if}
 		{#if $queryResult.error}
@@ -247,11 +336,99 @@
 							<div>{item.localTimeZone}</div>
 							<div>{item.locationName}</div>
 							<div>{item.isCopied}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
+							<div>{item.name}</div>
+							<div>{item.ivs}</div>
+							<div>{item.localTimeZone}</div>
+							<div>{item.locationName}</div>
+							<div>{item.isCopied}</div>
 						</button>
 					</div>
 				</VirtualList>
 			{/if}
-		{/if}
+		{/if} -->
 	</div>
 </div>
 
